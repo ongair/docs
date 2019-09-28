@@ -1,0 +1,7 @@
+.sidebar .app-name img {
+  max-width: 70%;
+}
+
+.sidebar .app-name {
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
