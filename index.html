@@ -20,9 +20,24 @@
       routerMode: 'history',
       subMaxLevel: 2,
       logo: '/_media/logo.png',
-      repo: 'https://github.com/ongair'
+      repo: 'https://github.com/ongair',
+      plugins: [
+        function(hook) {
+          var footer = [
+            '<hr/>',
+            '<footer>',
+            '<span>&copy; 2019 <a href="https://ongair.im">Ongair</a> </span>',
+            '</footer>'
+          ].join('');
+
+          hook.afterEach(function(html) {
+            return html + footer;
+          });
+        }
+      ]
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+
 </body>
 </html>
