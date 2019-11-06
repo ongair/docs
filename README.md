@@ -38,6 +38,26 @@ external_contact_id | String | The id of the contact on the channel | "+25472220
 account_type | String | The type of the channel | "WhatsApp"
 image | String | The url of the image sent or received | "https://cdn.ongair.im/123.jpg"
 
+The post uses the `application/x-www-form-urlencoded` content type therefore to read these values you need to use the names of the parameters as keys to get the values.
+
+### Example
+
+PHP
+```php
+
+  #in your handler
+  $notification_type = $_POST["notification_type"];
+  $text = $_POST["text"];
+```
+
+RUBY
+```ruby
+
+  #in your controller
+  notification_type = params[:notification_type]
+  text = params[:text]
+```
+
 ### Response
 
 Acknowledge receipt of the notification by responding with a HTTP 200 status code
