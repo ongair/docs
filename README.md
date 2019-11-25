@@ -30,11 +30,13 @@ If you have configured your channel to receive incoming messages every time a me
 
 | Name | Type | Purpose | Example |
 |--|--|--|--|
-notification_type | String | The type of notification being sent. Could be either "MessageSent" or "MessageReceived" or "ImageReceived" | "MessageReceived"
+notification_type | String | The type of notification being sent. Could be either "MessageSent" or "MessageReceived" or "ImageReceived" or "TicketStatusUpdated" | "MessageReceived"
 id | Integer | The id of the message | 3443
 name | String | The name of the contact if available | "John"
 text | String | The text sent or received | "Hello world"
 external_contact_id | String | The id of the contact on the channel | "+254722200200"
+conversation_id | Integer | The id of the conversation | 1
+status | String | The status of the conversation. Could be either "Open" or "Pending" or "Closed" | "Closed"
 account_type | String | The type of the channel | "WhatsApp"
 image | String | The url of the image sent or received | "https://cdn.ongair.im/123.jpg"
 
@@ -124,4 +126,35 @@ The response is a json object
 
 ```shell
   {  "sent": "true", "id": "35345435", "conversation_id": "22" }
+```
+
+## Creating Tickets
+You can create tickets on the Ongair platform for Agents to respond via the API. `https://ongair.im/api/v1/base/create_conversation`
+
+### Parameters
+
+| Name | Type | Mandatory | Purpose | Example |
+|--|--|--|--|--|
+external_id | String | yes | The external id of the contact on the channel | "+254722200200"
+name | String | no | The name of the contact| "John Snow"
+content_type | String | yes | The mime type of the image. Should be either 'image/jpeg' or 'image/png'| "image/jpeg"
+text | String | no | The message that was sent by the contact| "Hello world"
+external_contact_id | String | yes | The id of the contact on the channel | "+254722200200"
+thread | Boolean | no | Whether or not to attach the message to the current open conversation on the dashboard | true
+
+### Example
+
+```shell
+curl -d {"external_id":"+254722200200", "text":"Hello world", "name": "John Snow" }   
+  -H "Content-Type: application/json"
+  -H "Authorization: Token token:meowmeowmeow"
+  -X POST https://ongair.im/api/v1/base/create_conversation
+```
+
+### Response
+
+The response is a json object where `id` is the id of the conversation.
+
+```shell
+  {  "success": "true", "id": "3" }
 ```
