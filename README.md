@@ -137,15 +137,17 @@ You can create tickets on the Ongair platform for Agents to respond via the API.
 |--|--|--|--|--|
 external_id | String | yes | The external id of the contact on the channel | "+254722200200"
 name | String | no | The name of the contact| "John Snow"
-content_type | String | yes | The mime type of the image. Should be either 'image/jpeg' or 'image/png'| "image/jpeg"
-text | String | no | The message that was sent by the contact| "Hello world"
+message_id | String | yes | The unique id of the message on your platform | "364326432432"
+text | String | no | The message that was sent by the contact| "Hello wall"
 external_contact_id | String | yes | The id of the contact on the channel | "+254722200200"
-thread | Boolean | no | Whether or not to attach the message to the current open conversation on the dashboard | true
+profile_picture_url | String | no | The profile picture of the contact | "https://google.com/1.jpg"
+email | String | no | The email of the contact | "john@thewall.org"
+phone_number | String | no | The phone number of the contact | "254722200200"
 
 ### Example
 
 ```shell
-curl -d {"external_id":"+254722200200", "text":"Hello world", "name": "John Snow" }   
+curl -d {"external_id":"+254722200200", "text":"Hello world", "name": "John Snow", "message_id" : "364326432432" }   
   -H "Content-Type: application/json"
   -H "Authorization: Token token:meowmeowmeow"
   -X POST https://ongair.im/api/v1/base/create_conversation
