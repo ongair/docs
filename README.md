@@ -138,6 +138,7 @@ You can create tickets on the Ongair platform for Agents to respond via the API.
 external_id | String | yes | The external id of the contact on the channel | "+254722200200"
 name | String | no | The name of the contact| "John Snow"
 message_id | String | yes | The unique id of the message on your platform | "364326432432"
+direction | String | no | Whether the message is incoming "IN" or outgoing "OUT". If not provided it defaults to 'IN'
 text | String | no | The message that was sent by the contact| "Hello wall"
 external_contact_id | String | yes | The id of the contact on the channel | "+254722200200"
 profile_picture_url | String | no | The profile picture of the contact | "https://google.com/1.jpg"
