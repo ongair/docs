@@ -81,7 +81,7 @@ thread | Boolean | no | Whether or not to attach the message to the current open
 ### Example
 
 ```shell
-curl -d {"external_id":"+254722200200", "text":"Hello world", "thread": "true" }   
+curl -d {"external_id":"+254722200200", "text":"Hello world", "thread": "true" }
   -H "Content-Type: application/json"
   -H "Authorization: Token token:meowmeowmeow"
   -X POST https://ongair.im/api/v1/base/send
@@ -92,7 +92,7 @@ curl -d {"external_id":"+254722200200", "text":"Hello world", "thread": "true" }
 The response is a json object
 
 ```shell
-  {  "sent": "true", "id": "35345435", "conversation_id": "22" }
+  {  "sent": "true", "id": "35345432", "conversation_id": "22" }
 ```
 
 
@@ -106,7 +106,7 @@ In order to send an image message to a contact you need to send a post to the se
 |--|--|--|--|--|
 external_id | String | yes | The external id of the contact on the channel | "+254722200200"
 image | String | yes | The url to the image file to be send| "https://myserver.com/1.jpg"
-content_type | String | yes | The mime type of the image. Should be either 'image/jpeg' or 'image/png'| "image/jpeg"
+content_type | String | yes | The mime type of the image. Should be either `image/jpeg` or `image/png`| "image/jpeg"
 text | String | no | The caption to be sent| "Hello world"
 external_contact_id | String | yes | The id of the contact on the channel | "+254722200200"
 thread | Boolean | no | Whether or not to attach the message to the current open conversation on the dashboard | true
@@ -114,10 +114,10 @@ thread | Boolean | no | Whether or not to attach the message to the current open
 ### Example
 
 ```shell
-curl -d {"external_id":"+254722200200", "text":"Hello world", "image": "https://myserver.com/1.jpg", "content_type": "image/jpeg", "thread": "true" }   
-  -H "Content-Type: application/json"
+curl -d {"external_id":"+254722200200", "text":"Hello world", "image": "https://myserver.com/1.jpg", "content_type": "image/jpeg", "thread": "true" }
+  -H "Content-Type: multipart/form-data"
   -H "Authorization: Token token:meowmeowmeow"
-  -X POST https://ongair.im/api/v1/base/send
+  -X POST https://ongair.im/api/v1/base/send_image
 ```
 
 ### Response
@@ -127,6 +127,41 @@ The response is a json object
 ```shell
   {  "sent": "true", "id": "35345435", "conversation_id": "22" }
 ```
+
+
+## Sending Documents
+
+A document type message is sent with a file url. In order to send a file to a contact you need to post to the send document url `https://ongair.im/api/v1/base/send_document`
+
+### Parameters
+
+| Name | Type | Mandatory | Purpose | Example |
+|--|--|--|--|--|
+external_id | String | yes | The external id of the contact on the channel | "+254722200200"
+file_url | String | yes | The url of the document file to be sent | "https://myserver.com/api_docs.pdf"
+content_type | String | yes | The mime type of the document. Default type is `application/pdf`
+caption | String | no | The caption to be sent | "Hello world"
+thread | Boolean | no | Whether or not to attach the message to the current open conversation on the dashboard | true
+
+### Example
+
+```shell
+curl -d {"external_id":"+254722200200", "caption":"Hello world", "file_url": "https://myserver.com/api_docs.pdf", "content_type": "application/pdf", "thread": "true" }
+  -H "Content-Type: multipart/form-data"
+  -H "Authorization: Token token:meowmeowmeow"
+  -X POST https://ongair.im/api/v1/base/send_document
+```
+
+### Response
+
+The response is a json object
+
+```shell
+  {  "sent": "true", "id": "35345435", "conversation_id": "22" }
+```
+
+
+
 
 ## Creating Tickets
 You can create tickets on the Ongair platform for Agents to respond via the API. `https://ongair.im/api/v1/base/create_conversation`
@@ -148,7 +183,7 @@ phone_number | String | no | The phone number of the contact | "254722200200"
 ### Example
 
 ```shell
-curl -d {"external_id":"+254722200200", "text":"Hello world", "name": "John Snow", "message_id" : "364326432432" }   
+curl -d {"external_id":"+254722200200", "text":"Hello world", "name": "John Snow", "message_id" : "364326432432" }
   -H "Content-Type: application/json"
   -H "Authorization: Token token:meowmeowmeow"
   -X POST https://ongair.im/api/v1/base/create_conversation
