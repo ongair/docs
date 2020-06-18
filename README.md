@@ -196,3 +196,58 @@ The response is a json object where `id` is the id of the conversation.
 ```shell
   {  "success": "true", "id": "3" }
 ```
+
+## Retrieving your approved Template Messages
+
+This API method is used to get a list of Template Messages that have been approved for your account.
+
+### Example
+
+```shell
+curl -H 'Content-Type application/json' -H 'Authorization: Token token:meowmeow' https://ongair.im/api/v1/base/template_messages
+```
+
+### Response
+
+The response is a json object array with the template messages approved for your account
+
+```shell
+  [{
+    "id" : 1,
+    "message_type": "Text",
+    "active": true,
+    "template_name": "csat",
+    "template_namespace": "account_namespace",
+    "text": "On a scale of 1 to 5 how was your service today?",
+    "language_code": "en_US"
+  }]
+```
+
+## Sending WhatsApp Template Messages
+
+This API method is used for sending WhatsApp template messages and only works on WhatsApp accounts. Your WhatsApp template messages also need to have been approved beforehand. Please contact [hello@ongair.im](mailto:hello@ongair.im) for help with getting your account approved. You can either send to a single contact or to a list of contacts
+
+### Parameters
+
+| Name | Type | Mandatory | Purpose | Example |
+|--|--|--|--|--|
+template_id | Integer | yes | The id of your approved template | 1
+contact_id | Integer | yes | The id of the contact to send to | 2
+list_id | Integer | yes | The id of the list of contacts to send to | 3
+
+### Example
+
+```shell
+curl -d {"id":2, "template_id":1 }
+  -H "Content-Type: application/json"
+  -H "Authorization: Token token:meowmeowmeow"
+  -X POST https://ongair.im/api/v1/base/send_template_message
+```
+
+### Response
+
+The response is a json object where `id` is the id of the conversation.
+
+```shell
+  {  "success": "true" }
+```
