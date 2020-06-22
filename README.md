@@ -225,7 +225,7 @@ The response is a json object array with the template messages approved for your
 
 ## Sending WhatsApp Template Messages
 
-This API method is used for sending WhatsApp template messages and only works on WhatsApp accounts. Your WhatsApp template messages also need to have been approved beforehand. Please contact [hello@ongair.im](mailto:hello@ongair.im) for help with getting your account approved. You can either send to a single contact or to a list of contacts
+This API method is used for sending WhatsApp template messages and only works on WhatsApp accounts. Your WhatsApp template messages also need to have been approved beforehand. Please contact [hello@ongair.im](mailto:hello@ongair.im) for help with getting your account approved. You can either send to a single contact (via phone_number field or the contact_id) or to a list of contacts
 
 ### Parameters
 
@@ -233,12 +233,13 @@ This API method is used for sending WhatsApp template messages and only works on
 |--|--|--|--|--|
 template_id | Integer | yes | The id of your approved template | 1
 contact_id | Integer | yes | The id of the contact to send to | 2
+phone_number | String | yes | The phone number of the contact to send to | 9128378656
 list_id | Integer | yes | The id of the list of contacts to send to | 3
 
 ### Example
 
 ```shell
-curl -d {"id":2, "template_id":1 }
+curl -d {"id":2, "template_id":1, "phone_number": "9128378656" }
   -H "Content-Type: application/json"
   -H "Authorization: Token token:meowmeowmeow"
   -X POST https://ongair.im/api/v1/base/send_template_message
