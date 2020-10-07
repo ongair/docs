@@ -64,6 +64,42 @@ RUBY
 
 Acknowledge receipt of the notification by responding with a HTTP 200 status code
 
+## Retrieving Messages
+
+You can retrieve messages on the Ongair platform from the url `https://ongair.im/api/v1/search/messages`. Three formats are available `json`, `xml` and `csv`
+
+### Parameters
+
+| Name | Type | Mandatory | Purpose | Example |
+|--|--|--|--|--|
+format | String (csv,xml,json) | yes | The output format you want | "json"
+page | Integer | no | The page of results you would like | 2
+direction | String (in,out) | no | The direction of the messages
+
+### Example
+
+```shell
+curl -H 'Content-Type application/json' -H 'Authorization: Token token:meowmeow' https://ongair.im/api/v1/search/messages?format=json
+```
+
+### Response
+
+The response is a json array
+
+```shell
+[{
+  "id": 14,
+  "text": "Yes",
+  "created_at": "2020-08-11T09:40:57.000Z",
+  "direction": "IN",
+  "contact": {
+    "name": "Mrs Citizen",
+    "id": 1,
+    "phone_number": "254722200200"
+  }
+}]
+```
+
 
 ## Sending Messages
 
